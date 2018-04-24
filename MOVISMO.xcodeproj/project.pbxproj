@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324BCD7CCD26BA89BF221F61 /* Pods_MOVISMO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B2906AA9670A71429BC056 /* Pods_MOVISMO.framework */; };
 		AA2B5633208F536D000D7340 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5632208F536D000D7340 /* Movie.swift */; };
 		AA2B5636208F546F000D7340 /* HomePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */; };
 		AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5637208F550D000D7340 /* HomePageViewController.swift */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D7835EB25F177ED08CB8B68 /* Pods-MOVISMO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOVISMO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO.debug.xcconfig"; sourceTree = "<group>"; };
+		A1B2906AA9670A71429BC056 /* Pods_MOVISMO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOVISMO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B5632208F536D000D7340 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B5637208F550D000D7340 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		AAC1EC31208A132E0006B278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4FDB1CC208EB3230046B550 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		C4FDB1CE208EB3360046B550 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		C8C07A90BEC240804BE672DE /* Pods-MOVISMO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOVISMO.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +47,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324BCD7CCD26BA89BF221F61 /* Pods_MOVISMO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		443F36B2136336C2C5A87BB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2906AA9670A71429BC056 /* Pods_MOVISMO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DEA904BCECAB1D590FEE2F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D7835EB25F177ED08CB8B68 /* Pods-MOVISMO.debug.xcconfig */,
+				C8C07A90BEC240804BE672DE /* Pods-MOVISMO.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AA2B5631208F5350000D7340 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +95,8 @@
 			children = (
 				AAC1EC21208A132B0006B278 /* MOVISMO */,
 				AAC1EC20208A132B0006B278 /* Products */,
+				4DEA904BCECAB1D590FEE2F2 /* Pods */,
+				443F36B2136336C2C5A87BB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,9 +140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAC1EC34208A132E0006B278 /* Build configuration list for PBXNativeTarget "MOVISMO" */;
 			buildPhases = (
+				7307852B0146D4A7FA6EE2E9 /* [CP] Check Pods Manifest.lock */,
 				AAC1EC1B208A132B0006B278 /* Sources */,
 				AAC1EC1C208A132B0006B278 /* Frameworks */,
 				AAC1EC1D208A132B0006B278 /* Resources */,
+				37E1219857A4EEDC887594A0 /* [CP] Embed Pods Frameworks */,
+				D6232944D66B476B1E40E237 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +202,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37E1219857A4EEDC887594A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7307852B0146D4A7FA6EE2E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MOVISMO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6232944D66B476B1E40E237 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AAC1EC1B208A132B0006B278 /* Sources */ = {
@@ -330,15 +413,13 @@
 		};
 		AAC1EC35208A132E0006B278 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D7835EB25F177ED08CB8B68 /* Pods-MOVISMO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -348,15 +429,13 @@
 		};
 		AAC1EC36208A132E0006B278 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8C07A90BEC240804BE672DE /* Pods-MOVISMO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

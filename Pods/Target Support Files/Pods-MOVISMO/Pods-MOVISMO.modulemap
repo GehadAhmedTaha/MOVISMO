@@ -1,0 +1,6 @@
+framework module Pods_MOVISMO {
+  umbrella header "Pods-MOVISMO-umbrella.h"
+
+  export *
+  module * { export * }
+}
