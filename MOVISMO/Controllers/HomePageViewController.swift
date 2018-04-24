@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomePageViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -16,12 +17,15 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         MoviesCollectionView.dataSource = self
         MoviesCollectionView.delegate = self
         
+        
         /* let layout = self.MoviesCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
          
          layout.sectionInset = UIEdgeInsetsMake(0, 3, 0, 3)
          layout.minimumInteritemSpacing = 3
          
          layout.itemSize = CGSize(width: (self.MoviesCollectionView.frame.width)/2, height: (self.MoviesCollectionView.frame.height)/2)*/
+        
+        fetchDataFromMovieDB()
         
     }
 
@@ -43,6 +47,24 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
+    }
+    
+    func fetchDataFromMovieDB(){
+        //http://api.themoviedb.org/3/discover/movie?api_key=YOUR_KEY&sort_by=popularity.desc
+        Alamofire.request("http://api.themoviedb.org/3/discover/movie?api_key=d6c15d7db1d5269f5f7973e081b8969b&sort_by=popularity.desc").responseJSON{
+            response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            
+            if let json = response.result.value {
+                print("JSON: \(json)") // serialized json response
+            }
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)") // original server data as UTF8 string
+            }
+        }
     }
     /*
     // MARK: - Navigation
