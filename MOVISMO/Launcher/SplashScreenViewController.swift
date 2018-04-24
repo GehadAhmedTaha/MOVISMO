@@ -31,6 +31,9 @@ class SplashScreenViewController: UIViewController {
             }, completion: { (true) in
                 UIView.animate(withDuration: 1, animations: {
                     self.splashLabel.alpha = 1
+                }, completion: {
+                    (true) in
+                    self.present( UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as UIViewController, animated: true, completion: nil)
                 })
             })
         }
