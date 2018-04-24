@@ -7,22 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2B5633208F536D000D7340 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5632208F536D000D7340 /* Movie.swift */; };
+		AA2B5636208F546F000D7340 /* HomePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */; };
+		AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5637208F550D000D7340 /* HomePageViewController.swift */; };
+		AA2B563A208F5686000D7340 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5639208F5686000D7340 /* FavoritesViewController.swift */; };
+		AA2B563C208F5709000D7340 /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */; };
 		AAC1EC23208A132B0006B278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1EC22208A132B0006B278 /* AppDelegate.swift */; };
-		AAC1EC25208A132B0006B278 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1EC24208A132B0006B278 /* ViewController.swift */; };
 		AAC1EC28208A132B0006B278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC1EC26208A132B0006B278 /* Main.storyboard */; };
 		AAC1EC2B208A132B0006B278 /* MOVISMO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAC1EC29208A132B0006B278 /* MOVISMO.xcdatamodeld */; };
 		AAC1EC2D208A132E0006B278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC1EC2C208A132E0006B278 /* Assets.xcassets */; };
 		AAC1EC30208A132E0006B278 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC1EC2E208A132E0006B278 /* LaunchScreen.storyboard */; };
 		C4FDB1CD208EB3230046B550 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4FDB1CC208EB3230046B550 /* Splash.storyboard */; };
 		C4FDB1CF208EB3360046B550 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FDB1CE208EB3360046B550 /* SplashScreenViewController.swift */; };
-		C4FDB1D2208EB3A50046B550 /* Logo_mo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4FDB1D1208EB3A50046B550 /* Logo_mo.jpg */; };
-		C4FDB1D4208EB4000046B550 /* Camera-Lens-Transparent-Background-349x279.png in Resources */ = {isa = PBXBuildFile; fileRef = C4FDB1D3208EB4000046B550 /* Camera-Lens-Transparent-Background-349x279.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA2B5632208F536D000D7340 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA2B5637208F550D000D7340 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		AA2B5639208F5686000D7340 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC1EC1F208A132B0006B278 /* MOVISMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOVISMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC1EC22208A132B0006B278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AAC1EC24208A132B0006B278 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AAC1EC27208A132B0006B278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAC1EC2A208A132B0006B278 /* MOVISMO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MOVISMO.xcdatamodel; sourceTree = "<group>"; };
 		AAC1EC2C208A132E0006B278 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,8 +36,6 @@
 		AAC1EC31208A132E0006B278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4FDB1CC208EB3230046B550 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		C4FDB1CE208EB3360046B550 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
-		C4FDB1D1208EB3A50046B550 /* Logo_mo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Logo_mo.jpg; sourceTree = "<group>"; };
-		C4FDB1D3208EB4000046B550 /* Camera-Lens-Transparent-Background-349x279.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera-Lens-Transparent-Background-349x279.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA2B5631208F5350000D7340 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA2B5632208F536D000D7340 /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA2B5634208F5379000D7340 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */,
+				AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */,
+				AA2B5637208F550D000D7340 /* HomePageViewController.swift */,
+				AA2B5639208F5686000D7340 /* FavoritesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		AAC1EC16208A132B0006B278 = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +87,9 @@
 		AAC1EC21208A132B0006B278 /* MOVISMO */ = {
 			isa = PBXGroup;
 			children = (
-				C4FDB1D3208EB4000046B550 /* Camera-Lens-Transparent-Background-349x279.png */,
-				C4FDB1D1208EB3A50046B550 /* Logo_mo.jpg */,
+				AA2B5634208F5379000D7340 /* Controllers */,
+				AA2B5631208F5350000D7340 /* Models */,
 				AAC1EC22208A132B0006B278 /* AppDelegate.swift */,
-				AAC1EC24208A132B0006B278 /* ViewController.swift */,
 				AAC1EC26208A132B0006B278 /* Main.storyboard */,
 				AAC1EC2C208A132E0006B278 /* Assets.xcassets */,
 				AAC1EC2E208A132E0006B278 /* LaunchScreen.storyboard */,
@@ -147,8 +169,6 @@
 			files = (
 				AAC1EC30208A132E0006B278 /* LaunchScreen.storyboard in Resources */,
 				AAC1EC2D208A132E0006B278 /* Assets.xcassets in Resources */,
-				C4FDB1D4208EB4000046B550 /* Camera-Lens-Transparent-Background-349x279.png in Resources */,
-				C4FDB1D2208EB3A50046B550 /* Logo_mo.jpg in Resources */,
 				AAC1EC28208A132B0006B278 /* Main.storyboard in Resources */,
 				C4FDB1CD208EB3230046B550 /* Splash.storyboard in Resources */,
 			);
@@ -161,10 +181,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC1EC25208A132B0006B278 /* ViewController.swift in Sources */,
 				AAC1EC2B208A132B0006B278 /* MOVISMO.xcdatamodeld in Sources */,
 				C4FDB1CF208EB3360046B550 /* SplashScreenViewController.swift in Sources */,
+				AA2B563C208F5709000D7340 /* FavoritesCollectionViewCell.swift in Sources */,
+				AA2B563A208F5686000D7340 /* FavoritesViewController.swift in Sources */,
+				AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */,
 				AAC1EC23208A132B0006B278 /* AppDelegate.swift in Sources */,
+				AA2B5636208F546F000D7340 /* HomePageCollectionViewCell.swift in Sources */,
+				AA2B5633208F536D000D7340 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo_mo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wya-aN-7qg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo_mo" translatesAutoresizingMaskIntoConstraints="NO" id="wya-aN-7qg">
                                 <rect key="frame" x="16" y="110" width="288" height="235"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera-Lens-Transparent-Background-349x279.png" translatesAutoresizingMaskIntoConstraints="NO" id="hcL-PT-xGq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera-Lens-Transparent-Background-349x279" translatesAutoresizingMaskIntoConstraints="NO" id="hcL-PT-xGq">
                                 <rect key="frame" x="177" y="179" width="108" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -49,7 +49,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera-Lens-Transparent-Background-349x279.png" width="349" height="279"/>
-        <image name="Logo_mo.jpg" width="330" height="330"/>
+        <image name="Camera-Lens-Transparent-Background-349x279" width="349" height="279"/>
+        <image name="Logo_mo" width="330" height="330"/>
     </resources>
 </document>
