@@ -10,6 +10,5 @@ import UIKit
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var favoriteMovieTitle: UILabel!
     @IBOutlet weak var favoriteMovieImage: UIImageView!
 }

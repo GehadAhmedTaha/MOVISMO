@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		324BCD7CCD26BA89BF221F61 /* Pods_MOVISMO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B2906AA9670A71429BC056 /* Pods_MOVISMO.framework */; };
+		AA0ECC872091A5AD009F343E /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0ECC862091A5AD009F343E /* DetailsTableViewController.swift */; };
+		AA0ECC8B2091CAC5009F343E /* ReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0ECC8A2091CAC5009F343E /* ReviewsTableViewController.swift */; };
 		AA2B5633208F536D000D7340 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5632208F536D000D7340 /* Movie.swift */; };
 		AA2B5636208F546F000D7340 /* HomePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */; };
 		AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5637208F550D000D7340 /* HomePageViewController.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		0D7835EB25F177ED08CB8B68 /* Pods-MOVISMO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOVISMO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOVISMO/Pods-MOVISMO.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B2906AA9670A71429BC056 /* Pods_MOVISMO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOVISMO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0ECC862091A5AD009F343E /* DetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
+		AA0ECC8A2091CAC5009F343E /* ReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewController.swift; sourceTree = "<group>"; };
 		AA2B5632208F536D000D7340 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA2B5637208F550D000D7340 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */,
 				AA2B5637208F550D000D7340 /* HomePageViewController.swift */,
 				AA2B5639208F5686000D7340 /* FavoritesViewController.swift */,
+				AA0ECC862091A5AD009F343E /* DetailsTableViewController.swift */,
+				AA0ECC8A2091CAC5009F343E /* ReviewsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,6 +117,7 @@
 		AAC1EC21208A132B0006B278 /* MOVISMO */ = {
 			isa = PBXGroup;
 			children = (
+				C4FDB1D0208EB33C0046B550 /* Launcher */,
 				AA2B5634208F5379000D7340 /* Controllers */,
 				AA2B5631208F5350000D7340 /* Models */,
 				AAC1EC22208A132B0006B278 /* AppDelegate.swift */,
@@ -119,7 +126,6 @@
 				AAC1EC2E208A132E0006B278 /* LaunchScreen.storyboard */,
 				AAC1EC31208A132E0006B278 /* Info.plist */,
 				AAC1EC29208A132B0006B278 /* MOVISMO.xcdatamodeld */,
-				C4FDB1D0208EB33C0046B550 /* Launcher */,
 			);
 			path = MOVISMO;
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 				C4FDB1CF208EB3360046B550 /* SplashScreenViewController.swift in Sources */,
 				AA2B563C208F5709000D7340 /* FavoritesCollectionViewCell.swift in Sources */,
 				AA2B563A208F5686000D7340 /* FavoritesViewController.swift in Sources */,
+				AA0ECC8B2091CAC5009F343E /* ReviewsTableViewController.swift in Sources */,
+				AA0ECC872091A5AD009F343E /* DetailsTableViewController.swift in Sources */,
 				AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */,
 				AAC1EC23208A132B0006B278 /* AppDelegate.swift in Sources */,
 				AA2B5636208F546F000D7340 /* HomePageCollectionViewCell.swift in Sources */,
@@ -421,7 +429,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -437,7 +448,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

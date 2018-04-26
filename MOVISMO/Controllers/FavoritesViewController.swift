@@ -25,7 +25,6 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let cell = favoritesCollectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoritesCollectionViewCell
         cell.favoriteMovieImage.image = UIImage(named: "defaultMovie")
-        cell.favoriteMovieTitle.text = "Favorite Movie title"
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
         return cell;

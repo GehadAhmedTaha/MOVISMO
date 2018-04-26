@@ -10,7 +10,5 @@ import UIKit
 
 class HomePageCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieImg: UIImageView!
 }
