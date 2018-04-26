@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
 class DetailsTableViewController: UITableViewController {
 
     @IBOutlet weak var detailedMovieImage: UIImageView!
@@ -19,26 +20,60 @@ class DetailsTableViewController: UITableViewController {
     @IBOutlet weak var playFirstTrailer: UIButton!
     @IBOutlet weak var playSecondTrailer: UIButton!
     
-    var tempMovie = Movie()
-    @IBAction func AddMovieToFavorites(_ sender: Any) {
-    }
+    let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
+    var selectedMovie = Movie()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailedMovieImage.sd_setImage(with: URL(string: self.tempMovie.imageFullPath!), placeholderImage: UIImage(named: "defaultMovie"))
-        detailedMovieTitle.text = self.tempMovie.title!
+        detailedMovieImage.sd_setImage(with: URL(string: self.selectedMovie.imageFullPath!), placeholderImage: UIImage(named: "defaultMovie"))
+        detailedMovieTitle.text = self.selectedMovie.title!
         var temp : String = ""
-        for genre in self.tempMovie.genre!{
+        for genre in self.selectedMovie.genre!{
             temp += genre
-            if genre != self.tempMovie.genre![self.tempMovie.genre!.count - 1]{
+            if genre != self.selectedMovie.genre![self.selectedMovie.genre!.count - 1]{
                 temp += " | "
             }
         }
         detailedMovieGenre.text = temp
-        detailedMovieReleaseDate.text = getFormattedDateForUI( self.tempMovie.releaseDate!)
-        detailedMovieRate.text = String(self.tempMovie.rate!)
-        detailedMovieOverview.text = self.tempMovie.overview!
+        detailedMovieReleaseDate.text = getFormattedDateForUI( self.selectedMovie.releaseDate!)
+        detailedMovieRate.text = String(self.selectedMovie.rate!)
+        detailedMovieOverview.text = self.selectedMovie.overview!
+        getReviewsFromAPI(){_,_ in }
+    }
+    @IBAction func AddMovieToFavorites(_ sender: Any) {
+    }
+    // MARK: - Network
+    func getReviewsFromAPI( completion: @escaping (Bool, Error?) -> ()) {
+        let params: Parameters = ["api_key": API_KEY]
+        let REVIEWS_URL =  "http://api.themoviedb.org/3/movie/\(selectedMovie.movieID!)/reviews"
+        Alamofire.request(REVIEWS_URL, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        let movies_reviews = json["results"].array
+                        if let reviews = movies_reviews {
+                            self.parseReviews(reviews)
+                            completion(true, nil)
+                            
+                        } else  {
+                            completion(false, NSError(domain: "MoviesListNotFound", code: 200, userInfo: nil))
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    completion(false, error)
+                }
+        }
     }
 
+    func parseReviews(_ data : Array<JSON>){
+        for review in data{
+        selectedMovie.reviewsAuthors!.append(review["author"].stringValue)
+        selectedMovie.reviewsContent!.append(review["content"].stringValue)
+        }
+    }
     // MARK: - Utilities
     func getFormattedDateForUI(_ date: Date?) -> String {
         if let release_date = date {
@@ -48,10 +83,12 @@ class DetailsTableViewController: UITableViewController {
         }
         return ""
     }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let reviewsVC = segue.destination as! ReviewsTableViewController
+        reviewsVC.reviewsAuthors = selectedMovie.reviewsAuthors!
+        reviewsVC.reviews = selectedMovie.reviewsContent!
     }
 
 }

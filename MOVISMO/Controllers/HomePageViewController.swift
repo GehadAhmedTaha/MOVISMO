@@ -13,9 +13,11 @@ import SDWebImage
 
 class HomePageViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var MoviesCollectionView: UICollectionView!
+    //http://api.themoviedb.org/3/movie/{MOVIE_ID}/videos?api_key=YOUR_KEY
     let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
     let API_BASE_URL = "https://api.themoviedb.org/3/discover/movie"
     let IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w185/"
+    var ReviewMovieID = String()
     var moviesArray = Array<Movie>()
     var sortType = "popularity.desc"
     var detailsVC = DetailsTableViewController()
@@ -43,7 +45,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         moviesArray[indexPath.row].genre!.append("Will be added soon")
         moviesArray[indexPath.row].trailerLinks!.append("Will be added soon")
-        detailsVC.tempMovie = moviesArray[indexPath.row]
+        detailsVC.selectedMovie = moviesArray[indexPath.row]
     }
     
     func getMoviesviaApi(completion: @escaping (Bool, Error?) -> ()) {
@@ -55,9 +57,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                 case .success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        print("JSON: \(json.count))")
                         let json_movies = json["results"].array
-                        print("JSON Movies : \(json_movies?.count ?? 0)")
                         if let movies = json_movies {
                             self.parseMoviesJsonArray(movies)
                             completion(true, nil)
@@ -77,6 +77,9 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                 
         }
     }
+  
+    
+    
     func parseMoviesJsonArray(_ data : Array<JSON>){
         var tempMovie : Movie
         for movieJson in data {
@@ -101,7 +104,6 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     }
 
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "favoritesSegue" {
             favoritesVC = segue.destination as! FavoritesViewController
@@ -109,6 +111,4 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             detailsVC = segue.destination as! DetailsTableViewController
         }
     }
- 
-
 }
