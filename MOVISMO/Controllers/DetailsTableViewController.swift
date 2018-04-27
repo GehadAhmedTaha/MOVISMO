@@ -17,11 +17,12 @@ class DetailsTableViewController: UITableViewController {
     @IBOutlet weak var detailedMovieReleaseDate: UILabel!
     @IBOutlet weak var detailedMovieRate: UILabel!
     @IBOutlet weak var detailedMovieOverview: UITextView!
-    @IBOutlet weak var playFirstTrailer: UIButton!
-    @IBOutlet weak var playSecondTrailer: UIButton!
+
     
     let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
     var selectedMovie = Movie()
+    var movieUrl : String = ""
+    let YOUTUBEBASELINK : String = "https://www.youtube.com/watch?v="
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class DetailsTableViewController: UITableViewController {
         detailedMovieRate.text = String(self.selectedMovie.rate!)
         detailedMovieOverview.text = self.selectedMovie.overview!
         getReviewsFromAPI(){_,_ in }
+        movieUrl = selectedMovie.trailerLinks![0]
     }
     @IBAction func AddMovieToFavorites(_ sender: Any) {
     }
@@ -89,6 +91,11 @@ class DetailsTableViewController: UITableViewController {
         let reviewsVC = segue.destination as! ReviewsTableViewController
         reviewsVC.reviewsAuthors = selectedMovie.reviewsAuthors!
         reviewsVC.reviews = selectedMovie.reviewsContent!
+    }
+    @IBAction func playTrailer(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "\(YOUTUBEBASELINK)\(movieUrl)")!, options:[:] ) { (true) in
+            
+        }
     }
 
 }
