@@ -74,12 +74,8 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                     completion(false, error)
                    //self.activityIndicatorView.stopAnimating()
                 }
-                
         }
     }
-  
-    
-    
     func parseMoviesJsonArray(_ data : Array<JSON>){
         var tempMovie : Movie
         for movieJson in data {
