@@ -27,6 +27,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         MoviesCollectionView.dataSource = self
         MoviesCollectionView.delegate = self
         getMoviesviaApi() {_,_ in }
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -87,9 +88,52 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             tempMovie.rate = movieJson["vote_average"].floatValue
             tempMovie.releaseDate = getFormattedDate(movieJson["release_date"].stringValue)
             tempMovie.imageFullPath = IMAGE_BASE_URL + tempMovie.posterPath!
-            moviesArray.append(tempMovie)
+            getTrailers(mov: tempMovie)
+            
         }
-        self.MoviesCollectionView.reloadData()
+        
+    }
+    
+    func parseTrailersJsonArray(_ data : Array<JSON>)-> String{
+        var trailerKey : String = ""
+        for object in data{
+            trailerKey = object["key"].stringValue
+        }
+        return trailerKey
+    }
+    
+    
+    // Get Trailers Method with id
+    func getTrailers(mov: Movie){
+        let params: Parameters = ["api_key": API_KEY,
+                                  "language": "en-US"]
+        var movieTrailer : String = ""
+        let TRAILERS_BASE_URL = "https://api.themoviedb.org/3/movie/\(mov.movieID!)/videos"
+        Alamofire.request(TRAILERS_BASE_URL, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        let json_movies = json["results"].array
+                        if let movies = json_movies {
+                            movieTrailer =  self.parseTrailersJsonArray(movies)
+                            mov.trailerLinks? = [movieTrailer]
+                            self.moviesArray.append(mov)
+                            self.MoviesCollectionView.reloadData()
+                        } else  {
+
+                        }
+                        // self.activityIndicatorView.stopAnimating()
+                    }
+                case .failure(let error):
+                    print(error)
+                    //self.activityIndicatorView.stopAnimating()
+                }
+                
+                
+        }
+        
     }
     
     // MARK: - Utilities
