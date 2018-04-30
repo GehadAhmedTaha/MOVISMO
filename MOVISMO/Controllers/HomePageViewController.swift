@@ -51,7 +51,6 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        moviesArray[indexPath.row].genre!.append("Will be added soon")
         //moviesArray[indexPath.row].trailerLinks!.append("Will be added soon")
         detailsVC.selectedMovie = moviesArray[indexPath.row]
     }
@@ -73,6 +72,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                             self.parseMoviesJsonArray(movies)
                             self.MoviesCollectionView.reloadData()
                             self.saveFavoriteMovieToCoreData(favoriteMovies: self.favoriteMovies)
+                            self.MoviesCollectionView.reloadData()
                             completion(true, nil)
                         } else  {
                             
@@ -82,14 +82,12 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
 
                             
                         }
-                       // self.activityIndicatorView.stopAnimating()
                     }
                 case .failure(let error):
                    print(error)
                    self.getAllSavedMoviesFromCoreData()
                    completion(true, nil)
-                   //completion(false, error)
-                   //self.activityIndicatorView.stopAnimating()
+                 
                 }
         }
     }
@@ -111,7 +109,6 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     
     // MARK: - Trailers
     func getTrailers(mov: Movie){
-        print("inside get trailers")
         let params: Parameters = ["api_key": API_KEY,
                                   "language": "en-US"]
         var movieTrailer : String = ""
@@ -125,22 +122,18 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                         let json_movies = json["results"].array
                         if let movies = json_movies {
                             movieTrailer =  self.parseTrailersJsonArray(movies)
-                            mov.trailerLinks? = [movieTrailer]
+                            mov.trailerLinks? = movieTrailer
                             mov.isFavorite = false
                             self.moviesArray.append(mov)
                             self.MoviesCollectionView.reloadData()
                             self.saveMovieToCoreData(movie: mov, isFavorite: false)
                             self.updateMoviesArray()
-                            print("trailer saved")
                         } else  {
-                            print("trailers list not found")
                         }
-                        // self.activityIndicatorView.stopAnimating()
                     }
                 case .failure(let error):
                     print("failed in get trailers")
                     print(error)
-                    //self.activityIndicatorView.stopAnimating()
                 }
         }
     }
@@ -178,13 +171,13 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             movieObject.setValue(movie.overview, forKey: "overview")
             
             movieObject.setValue(isFavorite, forKey: "isFavorite");
+            movieObject.setValue(movie.trailerLinks, forKey: "trailer")
             //save genre
             //save trailerLinks
             //save reviewsContent
             //save reviewsAuthors
             do{
                 try   managedContext.save()
-                print("saved at coreDate \(String(describing: movie.title))")
             }catch{
                 print("Error at coreData while saving \(String(describing: movie.title)) ")
             }
@@ -198,13 +191,10 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         do{
             let movies =  try managedContext.fetch(request);
             for i in 0..<movies.count{
-                //if(movies[i].value(forKeyPath: "isFavorite") as! Bool == false){
                     managedContext.delete(movies[i]);
-                    print("movie deleted")
-                //}
             }
         }catch{
-            print("Error")
+            print("Error @ deleteDownloadedMoviesFromCoreData")
         }
     }
     
@@ -226,6 +216,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             
                 tempMovie.overview = (movies[i].value(forKeyPath: "overview") as! String)
                 tempMovie.isFavorite = (movies[i].value(forKeyPath: "isFavorite") as! Bool)
+                tempMovie.trailerLinks = (movies[i].value(forKeyPath: "trailer") as! String)
                 self.moviesArray.append(tempMovie)
                 self.MoviesCollectionView!.reloadData()
             }
@@ -247,14 +238,13 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                     tempMovie.movieID = ( movies[i].value(forKeyPath: "movieID") as! Int)
                     tempMovie.title = ( movies[i].value(forKeyPath: "title") as! String)
                     tempMovie.imageFullPath = ( movies[i].value(forKeyPath: "imageFullPath") as! String)
-                    print(tempMovie.imageFullPath as Any)
                     tempMovie.rate = (movies[i].value(forKey: "rate") as! Float)
                     tempMovie.releaseDate = Utilities.getFormattedDate((movies[i].value(forKey: "releaseDate") as! String))
                     
                     tempMovie.overview = (movies[i].value(forKeyPath: "overview") as! String)
                     tempMovie.isFavorite = (movies[i].value(forKeyPath: "isFavorite") as! Bool)
+                    tempMovie.trailerLinks = (movies[i].value(forKeyPath: "trailer") as! String)
                         favoriteMovies.append(tempMovie)
-                    print("movie added to favoriteList")
                 }
             }
         }catch{
@@ -266,7 +256,6 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     func saveFavoriteMovieToCoreData(favoriteMovies: Array<Movie>){
         for favMovie in favoriteMovies{
             saveMovieToCoreData(movie: favMovie, isFavorite: true)
-            print("Favorite movie saved @ home page view controller")
         }
     }
     // MARK: - Navigation

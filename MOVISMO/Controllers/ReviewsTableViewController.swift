@@ -12,6 +12,7 @@ class ReviewsTableViewController: UITableViewController {
     var reviewsAuthors = [String]()
     var reviews = [String]()
     var noReviews = Bool()
+    var twoReviews = Bool()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,14 +25,17 @@ class ReviewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if reviewsAuthors.count != 0{
-            noReviews = false
-            return reviewsAuthors.count
-        }
-        else{
+        if reviewsAuthors.count == 0{
             noReviews = true
             return 1
+        }else if reviewsAuthors.count == 2{
+            twoReviews = true
         }
+        else{
+            noReviews = false
+        }
+            return reviewsAuthors.count
+     
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,6 +54,8 @@ class ReviewsTableViewController: UITableViewController {
         var height : CGFloat = 200
         if noReviews == true{
             height = 676
+        }else if twoReviews == true{
+            height = 338
         }
         return height
     }

@@ -14,47 +14,38 @@ import SDWebImage
 class DetailsTableViewController: UITableViewController {
 
     // MARK: - Attributes
+    @IBOutlet weak var playTrailersBtn: UIButton!
+    @IBOutlet weak var reviewsBtn: UIButton!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var detailedMovieImage: UIImageView!
     @IBOutlet weak var detailedMovieTitle: UILabel!
-    @IBOutlet weak var detailedMovieGenre: UILabel!
     @IBOutlet weak var detailedMovieReleaseDate: UILabel!
     @IBOutlet weak var detailedMovieRate: UILabel!
     @IBOutlet weak var detailedMovieOverview: UITextView!
     let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
     var selectedMovie = Movie()
-    var isFromFavortiesController = false;
     var movieUrl : String = ""
     let YOUTUBEBASELINK : String = "https://www.youtube.com/watch?v="
   
     override func viewWillAppear(_ animated: Bool) {
         if selectedMovie.isFavorite != true{
             self.addBtn.setImage(UIImage(named: "emptyHeart"), for: UIControlState.normal)
-            self.tableView.reloadData()
         }else{
             self.addBtn.setImage(UIImage(named: "filledHeart"), for: UIControlState.normal)
-            self.tableView.reloadData()
         }
+        self.reloadInputViews()
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         detailedMovieImage.sd_setImage(with: URL(string: self.selectedMovie.imageFullPath!), placeholderImage: UIImage(named: "defaultMovie"))
         detailedMovieTitle.text = self.selectedMovie.title!
-        var temp : String = ""
-        for genre in self.selectedMovie.genre!{
-            temp += genre
-            if genre != self.selectedMovie.genre![self.selectedMovie.genre!.count - 1]{
-                temp += " | "
-            }
-        }
-        detailedMovieGenre.text = temp
         detailedMovieReleaseDate.text = Utilities.getFormattedDateForUI( self.selectedMovie.releaseDate!)
         detailedMovieRate.text = String(self.selectedMovie.rate!)
         detailedMovieOverview.text = self.selectedMovie.overview!
         getReviewsFromAPI(){_,_ in }
-       /* if isFromFavortiesController == false{
-            movieUrl = selectedMovie.trailerLinks![0]
-        }*/
+        movieUrl = selectedMovie.trailerLinks!
+     
     }
     
     @IBAction func AddMovieToFavorites(_ sender: Any) {
@@ -65,27 +56,30 @@ class DetailsTableViewController: UITableViewController {
                 let movies =  try managedContext.fetch(request);
                 for i in 0..<movies.count{
                     if((movies[i].value(forKeyPath: "movieID") as! Int) == selectedMovie.movieID){
-                        if (movies[i].value(forKeyPath: "isFavorite") as! Bool) == true{
+                        if selectedMovie.isFavorite == true{
                             selectedMovie.isFavorite = false
+                            
                             movies[i].setValue(false, forKey: "isFavorite")
                            try managedContext.save()
                             addBtn.setImage(UIImage(named: "emptyHeart"), for: UIControlState.normal)
-                            self.tableView.reloadData()
+                            self.reloadInputViews()
 
                         }else{
                             selectedMovie.isFavorite = true
                         movies[i].setValue(true, forKey: "isFavorite")
                             try managedContext.save()
                             addBtn.setImage(UIImage(named: "filledHeart"), for: UIControlState.normal)
-                            self.tableView.reloadData()
+                            self.reloadInputViews()
                         }
-                        print("movie updated")
                         break
                     }
                 }
+
             }catch{
-                print("Error")
+                print("Error @ AddMovieToFavorites")
             }
+        self.tableView.reloadData()
+
     }
     // MARK: - Network
     func getReviewsFromAPI( completion: @escaping (Bool, Error?) -> ()) {

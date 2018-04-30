@@ -107,29 +107,22 @@
                                                     <color key="textColor" red="0.92549019607843142" green="0.4823529411764706" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Movie genre" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuw-FS-1cF">
-                                                    <rect key="frame" x="175" y="118" width="184" height="47"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <color key="textColor" red="0.97904108502538068" green="0.51618769111861718" blue="0.48867435252499808" alpha="0.62807684075342463" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Release Date" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qu-o3-X80">
-                                                    <rect key="frame" x="175" y="173" width="184" height="47"/>
+                                                    <rect key="frame" x="169" y="128" width="184" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <color key="textColor" red="0.97904108499999998" green="0.51618769109999996" blue="0.48867435250000002" alpha="0.62807684080000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfk-Jg-yAJ">
-                                                    <rect key="frame" x="175" y="228" width="60" height="47"/>
+                                                    <rect key="frame" x="175" y="199" width="60" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <color key="textColor" red="0.97904108499999998" green="0.51618769109999996" blue="0.48867435250000002" alpha="0.62807684080000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ratingImg" translatesAutoresizingMaskIntoConstraints="NO" id="OZl-wM-3h5">
-                                                    <rect key="frame" x="220" y="238" width="28" height="26"/>
+                                                    <rect key="frame" x="216" y="209" width="28" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -144,24 +137,44 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4A-KI-Y4f">
-                                                    <rect key="frame" x="99" y="5" width="158" height="30"/>
+                                                    <rect key="frame" x="53" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add to favorites" image="emptyHeart">
+                                                    <state key="normal" image="emptyHeart">
                                                         <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="AddMovieToFavorites:" destination="0BQ-h6-BxI" eventType="touchUpInside" id="LMw-wX-ZL3"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUm-mY-rFI">
+                                                    <rect key="frame" x="133" y="7" width="109" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="video">
+                                                        <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="playTrailer:" destination="0BQ-h6-BxI" eventType="touchUpInside" id="Bjh-as-dx0"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVm-lx-735">
+                                                    <rect key="frame" x="295" y="7" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="reviews">
+                                                        <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="5u1-H5-hUm" kind="show" id="Qb4-CH-VP2"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="205" id="xlQ-nW-DU5">
-                                        <rect key="frame" x="0.0" y="349" width="375" height="205"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="255" id="xlQ-nW-DU5">
+                                        <rect key="frame" x="0.0" y="349" width="375" height="255"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xlQ-nW-DU5" id="lFl-m1-tWU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="204.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="254.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="OBL-7P-Wcm">
@@ -169,7 +182,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVY-iW-W35">
-                                                    <rect key="frame" x="16" y="39" width="352" height="155"/>
+                                                    <rect key="frame" x="16" y="39" width="352" height="192"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="textColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -187,63 +200,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="132" id="9k1-as-nyV">
-                                        <rect key="frame" x="0.0" y="554" width="375" height="132"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9k1-as-nyV" id="x73-oz-yjs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="T8Z-j6-gov">
-                                                    <rect key="frame" x="16" y="11" width="28" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trailers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-ef-SnU">
-                                                    <rect key="frame" x="52" y="9" width="83" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <color key="textColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUm-mY-rFI">
-                                                    <rect key="frame" x="26" y="52" width="109" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Trailer 1" image="playVideo">
-                                                        <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="playTrailer:" destination="0BQ-h6-BxI" eventType="touchUpInside" id="Bjh-as-dx0"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="nVv-Ib-OcZ">
-                                        <rect key="frame" x="0.0" y="686" width="375" height="46"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVv-Ib-OcZ" id="xP1-kV-JV0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVm-lx-735">
-                                                    <rect key="frame" x="99" y="5" width="148" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Check reviews" image="reviews">
-                                                        <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="5u1-H5-hUm" kind="show" id="Qb4-CH-VP2"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableViewCell>
                                 </cells>
-                            </tableViewSection>
-                            <tableViewSection id="yYt-bv-lai">
-                                <cells/>
                             </tableViewSection>
                         </sections>
                         <connections>
@@ -254,12 +211,13 @@
                     <navigationItem key="navigationItem" title="Details" id="43y-AJ-oV0"/>
                     <connections>
                         <outlet property="addBtn" destination="E4A-KI-Y4f" id="JAz-U0-kk4"/>
-                        <outlet property="detailedMovieGenre" destination="Cuw-FS-1cF" id="7XI-ho-etz"/>
                         <outlet property="detailedMovieImage" destination="EMa-c3-ikD" id="SAA-cf-TZR"/>
                         <outlet property="detailedMovieOverview" destination="kVY-iW-W35" id="oPH-3s-Nin"/>
                         <outlet property="detailedMovieRate" destination="cfk-Jg-yAJ" id="MR7-Su-S1h"/>
                         <outlet property="detailedMovieReleaseDate" destination="2qu-o3-X80" id="iBo-1u-IEX"/>
                         <outlet property="detailedMovieTitle" destination="epK-6g-mBe" id="qdD-GX-uMa"/>
+                        <outlet property="playTrailersBtn" destination="RUm-mY-rFI" id="Z9A-cs-0nX"/>
+                        <outlet property="reviewsBtn" destination="vVm-lx-735" id="SGE-Cd-gJE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVd-og-WyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,7 +388,6 @@
         <image name="emptyHeart" width="30" height="30"/>
         <image name="filledHeart" width="30" height="30"/>
         <image name="info" width="30" height="30"/>
-        <image name="playVideo" width="30" height="30"/>
         <image name="ratingImg" width="256" height="256"/>
         <image name="reviews" width="30" height="30"/>
         <image name="video" width="30" height="30"/>
