@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nmx-Ng-Yvd">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nmx-Ng-Yvd">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1966441404" green="0.1980462398" blue="0.20225253809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,7 +80,7 @@
         <!--Details-->
         <scene sceneID="pbn-Ip-aLj">
             <objects>
-                <tableViewController id="0BQ-h6-BxI" customClass="DetailsTableViewController" customModule="MOVISMO" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="detailsViewController" id="0BQ-h6-BxI" customClass="DetailsTableViewController" customModule="MOVISMO" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxD-uu-UgU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,7 +89,7 @@
                         <sections>
                             <tableViewSection headerTitle="" id="g9U-AT-3F7">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="303" id="obY-u0-Pim">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="303" id="obY-u0-Pim">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="303"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="obY-u0-Pim" id="wfr-Vk-rtm">
@@ -136,7 +136,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.19621163606643677" green="0.19995808601379395" blue="0.20429891347885132" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="Lc6-YE-FbU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="Lc6-YE-FbU">
                                         <rect key="frame" x="0.0" y="303" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lc6-YE-FbU" id="S2i-wH-55q">
@@ -146,7 +146,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4A-KI-Y4f">
                                                     <rect key="frame" x="99" y="5" width="158" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add to favorites" image="favorites">
+                                                    <state key="normal" title="Add to favorites" image="emptyHeart">
                                                         <color key="titleColor" red="0.92549019610000005" green="0.4823529412" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -157,7 +157,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="205" id="xlQ-nW-DU5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="205" id="xlQ-nW-DU5">
                                         <rect key="frame" x="0.0" y="349" width="375" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xlQ-nW-DU5" id="lFl-m1-tWU">
@@ -187,7 +187,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="132" id="9k1-as-nyV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="132" id="9k1-as-nyV">
                                         <rect key="frame" x="0.0" y="554" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9k1-as-nyV" id="x73-oz-yjs">
@@ -219,7 +219,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1962116361" green="0.19995808600000001" blue="0.20429891350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="nVv-Ib-OcZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="nVv-Ib-OcZ">
                                         <rect key="frame" x="0.0" y="686" width="375" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVv-Ib-OcZ" id="xP1-kV-JV0">
@@ -253,6 +253,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Details" id="43y-AJ-oV0"/>
                     <connections>
+                        <outlet property="addBtn" destination="E4A-KI-Y4f" id="JAz-U0-kk4"/>
                         <outlet property="detailedMovieGenre" destination="Cuw-FS-1cF" id="7XI-ho-etz"/>
                         <outlet property="detailedMovieImage" destination="EMa-c3-ikD" id="SAA-cf-TZR"/>
                         <outlet property="detailedMovieOverview" destination="kVY-iW-W35" id="oPH-3s-Nin"/>
@@ -375,14 +376,15 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="esR-85-5pw"/>
-                                    <barButtonItem image="favorites" id="Pjt-T3-IIW">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kSY-pu-Vct"/>
+                                    <barButtonItem image="filledHeart" id="Pjt-T3-IIW">
                                         <connections>
                                             <segue destination="5Aa-zQ-UGc" kind="show" identifier="favoritesSegue" id="jcL-DF-Or4"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FnR-LT-nsC"/>
                                 </items>
+                                <color key="barTintColor" red="0.36289692350000002" green="0.37010812879999999" blue="0.38160295049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -411,6 +413,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5GX-cC-A2D">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.36289692350000002" green="0.37010812879999999" blue="0.38160295049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -424,7 +427,8 @@
     </scenes>
     <resources>
         <image name="defaultMovie" width="200" height="300"/>
-        <image name="favorites" width="30" height="30"/>
+        <image name="emptyHeart" width="30" height="30"/>
+        <image name="filledHeart" width="30" height="30"/>
         <image name="info" width="30" height="30"/>
         <image name="playVideo" width="30" height="30"/>
         <image name="ratingImg" width="256" height="256"/>

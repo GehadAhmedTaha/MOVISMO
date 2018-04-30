@@ -16,6 +16,7 @@
 		AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5637208F550D000D7340 /* HomePageViewController.swift */; };
 		AA2B563A208F5686000D7340 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B5639208F5686000D7340 /* FavoritesViewController.swift */; };
 		AA2B563C208F5709000D7340 /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */; };
+		AA84AA7E209769740001CB7C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84AA7D209769740001CB7C /* Utilities.swift */; };
 		AAC1EC23208A132B0006B278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC1EC22208A132B0006B278 /* AppDelegate.swift */; };
 		AAC1EC28208A132B0006B278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC1EC26208A132B0006B278 /* Main.storyboard */; };
 		AAC1EC2B208A132B0006B278 /* MOVISMO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAC1EC29208A132B0006B278 /* MOVISMO.xcdatamodeld */; };
@@ -36,6 +37,7 @@
 		AA2B5637208F550D000D7340 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		AA2B5639208F5686000D7340 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA84AA7D209769740001CB7C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		AAC1EC1F208A132B0006B278 /* MOVISMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOVISMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC1EC22208A132B0006B278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC1EC27208A132B0006B278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2B5632208F536D000D7340 /* Movie.swift */,
+				AA84AA7D209769740001CB7C /* Utilities.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */,
-				AAC1EC20208A132B0006B278 /* Products */,
 				AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */,
 				AA2B5637208F550D000D7340 /* HomePageViewController.swift */,
 				AA2B5639208F5686000D7340 /* FavoritesViewController.swift */,
@@ -115,12 +117,13 @@
 				AAC1EC1F208A132B0006B278 /* MOVISMO.app */,
 			);
 			name = Products;
-			path = ../..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		AAC1EC21208A132B0006B278 /* MOVISMO */ = {
 			isa = PBXGroup;
 			children = (
+				AAC1EC20208A132B0006B278 /* Products */,
 				C4FDB1D0208EB33C0046B550 /* Launcher */,
 				AA2B5634208F5379000D7340 /* Controllers */,
 				AA2B5631208F5350000D7340 /* Models */,
@@ -266,6 +269,7 @@
 				AA2B563C208F5709000D7340 /* FavoritesCollectionViewCell.swift in Sources */,
 				AA2B563A208F5686000D7340 /* FavoritesViewController.swift in Sources */,
 				AA0ECC8B2091CAC5009F343E /* ReviewsTableViewController.swift in Sources */,
+				AA84AA7E209769740001CB7C /* Utilities.swift in Sources */,
 				AA0ECC872091A5AD009F343E /* DetailsTableViewController.swift in Sources */,
 				AA2B5638208F550D000D7340 /* HomePageViewController.swift in Sources */,
 				AAC1EC23208A132B0006B278 /* AppDelegate.swift in Sources */,

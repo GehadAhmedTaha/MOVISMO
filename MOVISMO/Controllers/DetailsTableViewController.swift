@@ -9,21 +9,33 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreData
+import SDWebImage
 class DetailsTableViewController: UITableViewController {
 
+    // MARK: - Attributes
+    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var detailedMovieImage: UIImageView!
     @IBOutlet weak var detailedMovieTitle: UILabel!
     @IBOutlet weak var detailedMovieGenre: UILabel!
     @IBOutlet weak var detailedMovieReleaseDate: UILabel!
     @IBOutlet weak var detailedMovieRate: UILabel!
     @IBOutlet weak var detailedMovieOverview: UITextView!
-
-    
     let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
     var selectedMovie = Movie()
+    var isFromFavortiesController = false;
     var movieUrl : String = ""
     let YOUTUBEBASELINK : String = "https://www.youtube.com/watch?v="
   
+    override func viewWillAppear(_ animated: Bool) {
+        if selectedMovie.isFavorite != true{
+            self.addBtn.setImage(UIImage(named: "emptyHeart"), for: UIControlState.normal)
+            self.tableView.reloadData()
+        }else{
+            self.addBtn.setImage(UIImage(named: "filledHeart"), for: UIControlState.normal)
+            self.tableView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         detailedMovieImage.sd_setImage(with: URL(string: self.selectedMovie.imageFullPath!), placeholderImage: UIImage(named: "defaultMovie"))
@@ -36,13 +48,44 @@ class DetailsTableViewController: UITableViewController {
             }
         }
         detailedMovieGenre.text = temp
-        detailedMovieReleaseDate.text = getFormattedDateForUI( self.selectedMovie.releaseDate!)
+        detailedMovieReleaseDate.text = Utilities.getFormattedDateForUI( self.selectedMovie.releaseDate!)
         detailedMovieRate.text = String(self.selectedMovie.rate!)
         detailedMovieOverview.text = self.selectedMovie.overview!
         getReviewsFromAPI(){_,_ in }
-        movieUrl = selectedMovie.trailerLinks![0]
+       /* if isFromFavortiesController == false{
+            movieUrl = selectedMovie.trailerLinks![0]
+        }*/
     }
+    
     @IBAction func AddMovieToFavorites(_ sender: Any) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+            do{
+                let movies =  try managedContext.fetch(request);
+                for i in 0..<movies.count{
+                    if((movies[i].value(forKeyPath: "movieID") as! Int) == selectedMovie.movieID){
+                        if (movies[i].value(forKeyPath: "isFavorite") as! Bool) == true{
+                            selectedMovie.isFavorite = false
+                            movies[i].setValue(false, forKey: "isFavorite")
+                           try managedContext.save()
+                            addBtn.setImage(UIImage(named: "emptyHeart"), for: UIControlState.normal)
+                            self.tableView.reloadData()
+
+                        }else{
+                            selectedMovie.isFavorite = true
+                        movies[i].setValue(true, forKey: "isFavorite")
+                            try managedContext.save()
+                            addBtn.setImage(UIImage(named: "filledHeart"), for: UIControlState.normal)
+                            self.tableView.reloadData()
+                        }
+                        print("movie updated")
+                        break
+                    }
+                }
+            }catch{
+                print("Error")
+            }
     }
     // MARK: - Network
     func getReviewsFromAPI( completion: @escaping (Bool, Error?) -> ()) {
@@ -75,15 +118,6 @@ class DetailsTableViewController: UITableViewController {
         selectedMovie.reviewsAuthors!.append(review["author"].stringValue)
         selectedMovie.reviewsContent!.append(review["content"].stringValue)
         }
-    }
-    // MARK: - Utilities
-    func getFormattedDateForUI(_ date: Date?) -> String {
-        if let release_date = date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter.string(from: release_date)
-        }
-        return ""
     }
     
     // MARK: - Navigation

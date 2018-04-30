@@ -23,16 +23,18 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     var sortType = "popularity.desc"
     var detailsVC = DetailsTableViewController()
     var favoritesVC = FavoritesViewController()
+    var favoriteMovies = Array<Movie>()
 
     
     // MARK: - UIViewController Methods
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         MoviesCollectionView.dataSource = self
         MoviesCollectionView.delegate = self
         //getAllSavedMoviesFromCoreData()
+        
         getMoviesviaApi() {_,_ in }
-      
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -66,9 +68,11 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                         let json = JSON(value)
                         let json_movies = json["results"].array
                         if let movies = json_movies {
+                            self.getFavoriteMoviesFromCoreData()
                             self.deleteDownloadedMoviesFromCoreData()
                             self.parseMoviesJsonArray(movies)
                             self.MoviesCollectionView.reloadData()
+                            self.saveFavoriteMovieToCoreData(favoriteMovies: self.favoriteMovies)
                             completion(true, nil)
                         } else  {
                             
@@ -99,7 +103,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             tempMovie.overview = movieJson["overview"].stringValue
             tempMovie.posterPath = movieJson["poster_path"].stringValue
             tempMovie.rate = movieJson["vote_average"].floatValue
-            tempMovie.releaseDate = getFormattedDate(movieJson["release_date"].stringValue)
+            tempMovie.releaseDate = Utilities.getFormattedDate(movieJson["release_date"].stringValue)
             tempMovie.imageFullPath = IMAGE_BASE_URL + tempMovie.posterPath!
             getTrailers(mov: tempMovie)
         }
@@ -122,9 +126,11 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                         if let movies = json_movies {
                             movieTrailer =  self.parseTrailersJsonArray(movies)
                             mov.trailerLinks? = [movieTrailer]
+                            mov.isFavorite = false
                             self.moviesArray.append(mov)
                             self.MoviesCollectionView.reloadData()
-                            self.saveMovieToCoreData(movie: mov)
+                            self.saveMovieToCoreData(movie: mov, isFavorite: false)
+                            self.updateMoviesArray()
                             print("trailer saved")
                         } else  {
                             print("trailers list not found")
@@ -147,8 +153,16 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         return trailerKey
     }
     
+    func updateMoviesArray(){
+        for movie in moviesArray{
+            if favoriteMovies.contains(where: { $0.movieID == movie.movieID }){
+                movie.isFavorite = true
+            }
+        }
+    }
+    
     // MARK: - CoreData
-    func saveMovieToCoreData(movie: Movie){
+    func saveMovieToCoreData(movie: Movie, isFavorite: Bool){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -160,10 +174,10 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             movieObject.setValue(movie.title, forKey: "title");
             movieObject.setValue(movie.imageFullPath, forKey: "imageFullPath");
             movieObject.setValue(movie.rate, forKey: "rate");
-            movieObject.setValue(getFormattedDateForUI(movie.releaseDate), forKey: "releaseDate");
+            movieObject.setValue(Utilities.getFormattedDateForUI(movie.releaseDate), forKey: "releaseDate");
             movieObject.setValue(movie.overview, forKey: "overview")
             
-            movieObject.setValue(false, forKey: "isFavorite");
+            movieObject.setValue(isFavorite, forKey: "isFavorite");
             //save genre
             //save trailerLinks
             //save reviewsContent
@@ -184,10 +198,10 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         do{
             let movies =  try managedContext.fetch(request);
             for i in 0..<movies.count{
-                if(movies[i].value(forKeyPath: "isFavorite") as! Bool == false){
+                //if(movies[i].value(forKeyPath: "isFavorite") as! Bool == false){
                     managedContext.delete(movies[i]);
                     print("movie deleted")
-                }
+                //}
             }
         }catch{
             print("Error")
@@ -202,14 +216,13 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         do{
             let  movies = try managedContext.fetch(request)
             var tempMovie = Movie()
-            
             for i in 0..<movies.count{
                 tempMovie = Movie()
                 tempMovie.movieID = ( movies[i].value(forKeyPath: "movieID") as! Int)
                 tempMovie.title = ( movies[i].value(forKeyPath: "title") as! String)
-                    tempMovie.imageFullPath = ( movies[i].value(forKeyPath: "imageFullPath") as! String)
+                tempMovie.imageFullPath = ( movies[i].value(forKeyPath: "imageFullPath") as! String)
                 tempMovie.rate = (movies[i].value(forKey: "rate") as! Float)
-                tempMovie.releaseDate = getFormattedDate((movies[i].value(forKey: "releaseDate") as! String))
+                tempMovie.releaseDate = Utilities.getFormattedDate((movies[i].value(forKey: "releaseDate") as! String))
             
                 tempMovie.overview = (movies[i].value(forKeyPath: "overview") as! String)
                 tempMovie.isFavorite = (movies[i].value(forKeyPath: "isFavorite") as! Bool)
@@ -221,27 +234,46 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    // MARK: - Utilities
-    func getFormattedDate (_ releaseDate : String) -> Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.date(from: releaseDate)
+    func getFavoriteMoviesFromCoreData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+        do{
+            let movies =  try managedContext.fetch(request);
+            for i in 0..<movies.count{
+                if(movies[i].value(forKeyPath: "isFavorite") as! Bool == true){
+                    let tempMovie = Movie()
+                    tempMovie.movieID = ( movies[i].value(forKeyPath: "movieID") as! Int)
+                    tempMovie.title = ( movies[i].value(forKeyPath: "title") as! String)
+                    tempMovie.imageFullPath = ( movies[i].value(forKeyPath: "imageFullPath") as! String)
+                    print(tempMovie.imageFullPath as Any)
+                    tempMovie.rate = (movies[i].value(forKey: "rate") as! Float)
+                    tempMovie.releaseDate = Utilities.getFormattedDate((movies[i].value(forKey: "releaseDate") as! String))
+                    
+                    tempMovie.overview = (movies[i].value(forKeyPath: "overview") as! String)
+                    tempMovie.isFavorite = (movies[i].value(forKeyPath: "isFavorite") as! Bool)
+                        favoriteMovies.append(tempMovie)
+                    print("movie added to favoriteList")
+                }
+            }
+        }catch{
+            print("Error")
+        }
     }
     
-    func getFormattedDateForUI(_ date: Date?) -> String {
-        if let release_date = date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter.string(from: release_date)
-        }
-        return ""
-    }
 
+    func saveFavoriteMovieToCoreData(favoriteMovies: Array<Movie>){
+        for favMovie in favoriteMovies{
+            saveMovieToCoreData(movie: favMovie, isFavorite: true)
+            print("Favorite movie saved @ home page view controller")
+        }
+    }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "favoritesSegue" {
             favoritesVC = segue.destination as! FavoritesViewController
-        }else{
+        }else if segue.identifier == "detailsSegue"{
             detailsVC = segue.destination as! DetailsTableViewController
         }
     }
