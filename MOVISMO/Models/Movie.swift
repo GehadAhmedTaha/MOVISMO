@@ -19,6 +19,7 @@ class Movie{
     var reviewsContent : [String]?
     var genre : [String]?
     var trailerLinks : [String]?
+    var isFavorite : Bool?
     init() {
         self.movieID = Int()
         self.rate = Float()
@@ -31,9 +32,10 @@ class Movie{
         reviewsContent = [String]()
         genre = [String]()
         trailerLinks = [String]()
+        self.isFavorite = Bool()
 
     }
-    init(movieID: Int?, rate: Float?, title: String?, overview: String?, posterPath: String?, releaseDate : Date?, imageFullPath: String?, reviewsAuthors : [String]?, reviewsContent : [String]?, genre: [String]?, trailerLinks : [String]?) {
+    init(movieID: Int?, rate: Float?, title: String?, overview: String?, posterPath: String?, releaseDate : Date?, imageFullPath: String?, reviewsAuthors : [String]?, reviewsContent : [String]?, genre: [String]?, trailerLinks : [String]?, isFavorite : Bool?) {
      self.movieID = movieID
      self.rate = rate
      self.title = title
@@ -45,5 +47,6 @@ class Movie{
      self.reviewsContent = reviewsContent
      self.genre = genre
      self.trailerLinks = trailerLinks
+        self.isFavorite = isFavorite
      }
 }

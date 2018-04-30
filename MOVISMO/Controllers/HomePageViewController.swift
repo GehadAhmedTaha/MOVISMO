@@ -15,7 +15,6 @@ import CoreData
 class HomePageViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - Attributes
     @IBOutlet weak var MoviesCollectionView: UICollectionView!
-    //http://api.themoviedb.org/3/movie/{MOVIE_ID}/videos?api_key=YOUR_KEY
     let API_KEY = "d6c15d7db1d5269f5f7973e081b8969b"
     let API_BASE_URL = "https://api.themoviedb.org/3/discover/movie"
     let IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w185/"
@@ -24,13 +23,16 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     var sortType = "popularity.desc"
     var detailsVC = DetailsTableViewController()
     var favoritesVC = FavoritesViewController()
+
     
     // MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         MoviesCollectionView.dataSource = self
         MoviesCollectionView.delegate = self
+        //getAllSavedMoviesFromCoreData()
         getMoviesviaApi() {_,_ in }
+      
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,7 +58,6 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
     func getMoviesviaApi(completion: @escaping (Bool, Error?) -> ()) {
         let params: Parameters = ["api_key": API_KEY,
                                   "sort_by" : sortType]
-        var downloaded = false
         Alamofire.request(API_BASE_URL, parameters: params)
             .responseJSON { response in
                 switch response.result {
@@ -65,28 +66,30 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                         let json = JSON(value)
                         let json_movies = json["results"].array
                         if let movies = json_movies {
+                            self.deleteDownloadedMoviesFromCoreData()
                             self.parseMoviesJsonArray(movies)
                             self.MoviesCollectionView.reloadData()
                             completion(true, nil)
-                            downloaded = true
-                            
                         } else  {
                             
-                            completion(false, NSError(domain: "MoviesListNotFound", code: 200, userInfo: nil))
+                            self.getAllSavedMoviesFromCoreData()
+                           // completion(false, NSError(domain: "MoviesListNotFound", code: 200, userInfo: nil))
+                            completion(true, nil)
+
                             
                         }
                        // self.activityIndicatorView.stopAnimating()
                     }
                 case .failure(let error):
                    print(error)
-                   completion(false, error)
+                   self.getAllSavedMoviesFromCoreData()
+                   completion(true, nil)
+                   //completion(false, error)
                    //self.activityIndicatorView.stopAnimating()
                 }
         }
-        if downloaded == true{
-            saveMovieToCoreData(movies: moviesArray)
-        }
     }
+    
     func parseMoviesJsonArray(_ data : Array<JSON>){
         var tempMovie : Movie
         for movieJson in data {
@@ -100,105 +103,8 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
             tempMovie.imageFullPath = IMAGE_BASE_URL + tempMovie.posterPath!
             getTrailers(mov: tempMovie)
         }
-        
     }
     
-    // MARK: - CoreData
-    /*
-     func saveDownloadedMovieToCoreData(movie : Movie){
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     
-     let managedContext = appDelegate.persistentContainer.viewContext
-     
-     let entity = NSEntityDescription.entity(forEntityName: "MoviesEntity", in: managedContext)
-     
-     let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
-     movieObject.setValue(movie.title, forKey: "title");
-     movieObject.setValue(movie.image, forKey: "image");
-     movieObject.setValue(movie.rating, forKey: "rating");
-     movieObject.setValue(movie.releaseYear, forKey: "releaseYear");
-     
-     movieObject.setValue(true, forKey: "downloadFlag");
-     //  movieObject.setValue([newGenre.text!], forKey: "genre");
-     do{
-     try   managedContext.save()
-     }catch{
-     
-     print("Error")
-     }
-     }
-     
-     func getAllSavedMoviesFromCoreData(){
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     let managedContext = appDelegate.persistentContainer.viewContext
-     
-     let request = NSFetchRequest<NSManagedObject>(entityName: "MoviesEntity")
-     do{
-     try  movies =  managedContext.fetch(request);
-     var tempMovie2 = Movie();
-     
-     for i in 0..<movies.count{
-     tempMovie2 = Movie();
-     tempMovie2.title = ( movies[i].value(forKeyPath: "title") as! String);
-     tempMovie2.rating = (movies[i].value(forKey: "rating") as! Float);
-     tempMovie2.releaseYear = (movies[i].value(forKey: "releaseYear") as! Int);
-     tempMovie2.image = ( movies[i].value(forKeyPath: "image") as! String);
-     self.moviesList.append(tempMovie2);
-     self.imagesNames.append(tempMovie2.image);
-     // self.tableView.reloadData();
-     }
-     }catch{
-     print("Error")
-     }
-     }
-     func deleteDownloadedMoviesFromCoreData(){
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     let managedContext = appDelegate.persistentContainer.viewContext
-     
-     let request = NSFetchRequest<NSManagedObject>(entityName: "MoviesEntity")
-     do{
-     try  movies =  managedContext.fetch(request);
-     for i in 0..<movies.count{
-     if(movies[i].value(forKeyPath: "downloadFlag") as! Bool == true){
-     managedContext.delete(movies[i]);
-     }
-     }
-     }catch{
-     print("Error")
-     }
-     }
-
-     */
-    func saveMovieToCoreData(movies: Array<Movie>){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext)
-        
-        let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
-        for movie in movies{
-            print("inside forloop")
-            movieObject.setValue(movie.movieID, forKey: "movieID")
-            movieObject.setValue(movie.title, forKey: "title");
-            movieObject.setValue(movie.imageFullPath, forKey: "imageFullPath");
-            movieObject.setValue(movie.rate, forKey: "rate");
-            movieObject.setValue(movie.releaseDate, forKey: "releaseDate");
-            movieObject.setValue(movie.overview, forKey: "overview")
-            
-            movieObject.setValue(false, forKey: "isFavortie");
-            //save genre
-            //save trailerLinks
-            //save reviewsContent
-            //save reviewsAuthors
-            do{
-                try   managedContext.save()
-                print("saved")
-            }catch{
-                print("Error at coreData")
-            }
-        }
-    }
     // MARK: - Trailers
     func getTrailers(mov: Movie){
         print("inside get trailers")
@@ -218,8 +124,10 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                             mov.trailerLinks? = [movieTrailer]
                             self.moviesArray.append(mov)
                             self.MoviesCollectionView.reloadData()
+                            self.saveMovieToCoreData(movie: mov)
+                            print("trailer saved")
                         } else  {
-
+                            print("trailers list not found")
                         }
                         // self.activityIndicatorView.stopAnimating()
                     }
@@ -230,6 +138,7 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
                 }
         }
     }
+    
     func parseTrailersJsonArray(_ data : Array<JSON>)-> String{
         var trailerKey : String = ""
         for object in data{
@@ -237,6 +146,81 @@ class HomePageViewController:UIViewController, UICollectionViewDataSource, UICol
         }
         return trailerKey
     }
+    
+    // MARK: - CoreData
+    func saveMovieToCoreData(movie: Movie){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext)
+        
+        let movieObject  = NSManagedObject(entity: entity!, insertInto: managedContext)
+            movieObject.setValue(movie.movieID, forKey: "movieID")
+            movieObject.setValue(movie.title, forKey: "title");
+            movieObject.setValue(movie.imageFullPath, forKey: "imageFullPath");
+            movieObject.setValue(movie.rate, forKey: "rate");
+            movieObject.setValue(getFormattedDateForUI(movie.releaseDate), forKey: "releaseDate");
+            movieObject.setValue(movie.overview, forKey: "overview")
+            
+            movieObject.setValue(false, forKey: "isFavorite");
+            //save genre
+            //save trailerLinks
+            //save reviewsContent
+            //save reviewsAuthors
+            do{
+                try   managedContext.save()
+                print("saved at coreDate \(String(describing: movie.title))")
+            }catch{
+                print("Error at coreData while saving \(String(describing: movie.title)) ")
+            }
+    }
+    
+    func deleteDownloadedMoviesFromCoreData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+        do{
+            let movies =  try managedContext.fetch(request);
+            for i in 0..<movies.count{
+                if(movies[i].value(forKeyPath: "isFavorite") as! Bool == false){
+                    managedContext.delete(movies[i]);
+                    print("movie deleted")
+                }
+            }
+        }catch{
+            print("Error")
+        }
+    }
+    
+    func getAllSavedMoviesFromCoreData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+        do{
+            let  movies = try managedContext.fetch(request)
+            var tempMovie = Movie()
+            
+            for i in 0..<movies.count{
+                tempMovie = Movie()
+                tempMovie.movieID = ( movies[i].value(forKeyPath: "movieID") as! Int)
+                tempMovie.title = ( movies[i].value(forKeyPath: "title") as! String)
+                    tempMovie.imageFullPath = ( movies[i].value(forKeyPath: "imageFullPath") as! String)
+                tempMovie.rate = (movies[i].value(forKey: "rate") as! Float)
+                tempMovie.releaseDate = getFormattedDate((movies[i].value(forKey: "releaseDate") as! String))
+            
+                tempMovie.overview = (movies[i].value(forKeyPath: "overview") as! String)
+                tempMovie.isFavorite = (movies[i].value(forKeyPath: "isFavorite") as! Bool)
+                self.moviesArray.append(tempMovie)
+                self.MoviesCollectionView!.reloadData()
+            }
+        }catch{
+            print("Error")
+        }
+    }
+    
     // MARK: - Utilities
     func getFormattedDate (_ releaseDate : String) -> Date? {
         let formatter = DateFormatter()
