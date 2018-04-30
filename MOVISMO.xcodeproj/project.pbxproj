@@ -89,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2B5635208F546F000D7340 /* HomePageCollectionViewCell.swift */,
+				AAC1EC20208A132B0006B278 /* Products */,
 				AA2B563B208F5709000D7340 /* FavoritesCollectionViewCell.swift */,
 				AA2B5637208F550D000D7340 /* HomePageViewController.swift */,
 				AA2B5639208F5686000D7340 /* FavoritesViewController.swift */,
@@ -103,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC1EC21208A132B0006B278 /* MOVISMO */,
-				AAC1EC20208A132B0006B278 /* Products */,
 				4DEA904BCECAB1D590FEE2F2 /* Pods */,
 				443F36B2136336C2C5A87BB3 /* Frameworks */,
 			);
@@ -115,6 +115,7 @@
 				AAC1EC1F208A132B0006B278 /* MOVISMO.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		AAC1EC21208A132B0006B278 /* MOVISMO */ = {
@@ -417,7 +418,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -433,7 +437,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E95FF3LK49;
 				INFOPLIST_FILE = MOVISMO/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gogo.MOVISMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
